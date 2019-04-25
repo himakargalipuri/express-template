@@ -1,4 +1,4 @@
 node_modules
 Dockerfile
-config.js
 logs
+package-lock.json
