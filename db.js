@@ -1,20 +1,16 @@
-const MongoClient = require('mongodb').MongoClient
-const config = require('./config')
+var mongoose = require('mongoose');
+// Build the connection string 
+const dbURI = require('./config').dburl;
+
+mongoose.connect(dbURI, {useNewUrlParser: true});
+
+
+
+module.exports = mongoose;
 
 const connect = () => {
-    return new Promise((Resolve, Reject) => {
-        MongoClient.connect(config.dburl, { useNewUrlParser: true }, function(err, client) {
-            if(err) {
-                Reject('Database could not be connected : ', err)
-            } else {
-                
-                client.close();
-                Resolve()
-            }
-            
-          });
-    })
-    
+    console.log('Database connecting....')
+    return mongoose.connect(dbURI, {useNewUrlParser: true})
 }
 
-module.exports = {connect}
+module.exports = { connect }

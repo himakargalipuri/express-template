@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const config = require('./config')
 
+
 const start = () => {
     return new Promise((Resolve, Reject) => {
         const app = express()
@@ -14,8 +15,9 @@ const start = () => {
         const routes = require('./routes/main')
 
         app.use('/', routes)
-        app.listen(config.port, () => Resolve(config.port))
-            .on('error', (err) => Reject(err))
+        console.log('Starting server..')
+        app.listen(config.port, () => Resolve())
+            .on('error', (err) => {Reject(err)})
     })
     
 }
