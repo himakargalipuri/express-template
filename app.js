@@ -1,26 +1,19 @@
-const ip = require('ip')
-
 const server = require('./server')
 const db = require('./db')
 const config = require('./config')
 
 process.on('uncaughtException', (err) => {
-  console.log('UncaughtException : ' + err.toString())
+  console.log('Uncaught Exception at : ' + err.toString())
 })
 
 process.on('unhandledRejection', (reason, p) => {
-  console.log('Unhandled Rejection at: ', reason.toString());
+  console.log('Unhandled Rejection at: ', reason);
 });
-
+/**
+* Connects to Database first.
+* Can add multiple Database connections to the chain
+* Once Database connected, server will be started
+*/
 db.connect()
-  .then(() => { console.log('Database Connected successfully..'); server.start() })
-  .then(() => {
-    
-      console.log(' ')
-      console.log('Server started : ')
-      console.log('     http://localhost:' + config.port)
-      console.log('     http://' + ip.address() + ':' + config.port)
-      console.log(' ')
-    
-  })
-  .catch((e) => { throw new Error(e.message); process.exit(1) })
+  .then(() => { server.start() })
+  .catch((e) => { throw new Error(e); process.exit(1) })

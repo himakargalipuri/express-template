@@ -4,21 +4,24 @@
   "description": "Production grade express mongodb template",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app",
+    "prod": "node app"
   },
   "author": "Himakar Reddy",
   "license": "MIT",
   "dependencies": {
+    "@hapi/joi": "^15.0.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-list-endpoints": "^4.0.0",
     "helmet": "^3.16.0",
-    "ip": "^1.1.5",
     "mongoose": "^5.5.3",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
+    "public-ip": "^3.1.0",
     "winston": "^3.2.1"
   }
 }
